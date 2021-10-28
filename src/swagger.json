@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "Documentation with Swagger Challenge",
+        "description": "nodejs with swagger rocketseat's bootcamp challenge",
+        "version": "1.0.0",
+        "contact":{
+            "email": "rapzadev@gmail.com"
+        }
+    },
+    "paths":{
+        "/users":{
+            "post": {
+                "tags": ["User"],
+                "summary": "Create user",
+                "description": "Crate a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "admin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "example":{
+                                    "id": "1",
+                                    "name": "Jhon Doe",
+                                    "email": "jhondoe@gmail.com",
+                                    "admin": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201":{
+                        "description": "User Created"
+                    },
+                    "400":{
+                        "description": "This email account is already in use"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["User"],
+                "summary": "List all users",
+                "description": "List all users",
+                "responses": {
+                    "200":{
+                        "description": "Success",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "admin": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "This user doesn't exists | This user is not an admin"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get":{
+                "tags":["User"],
+                "summary": "Show user profile data",
+                "description": "Show user profile",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }   
+        },
+        "users/{id}/admin": {
+            "patch": {
+                "tags": ["User"],
+                "summary": "Turn user in to admin",
+                "description": "Turn user in to admin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "admin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "example":{
+                                    "id": "1",
+                                    "name": "Jhon Doe",
+                                    "email": "jhondoe@gmail.com",
+                                    "admin": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
